@@ -249,7 +249,7 @@
     button svg { width: 15px; height: 15px; }
     .douse {
       padding: 8px 12px 8px 10px; color: #e9f6ff;
-      background: linear-gradient(180deg, #4a9be0, #2c6fb5);
+      background: linear-gradient(180deg, #2f74ba, #245d9a);
       box-shadow: 0 1px 0 rgba(255,255,255,.25) inset, 0 4px 14px -4px rgba(60,150,240,.7);
       transition: transform 160ms ease-out, filter 150ms ease;
     }

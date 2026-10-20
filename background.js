@@ -122,7 +122,7 @@ function setBadge(warm, paused) {
     chrome.action.setTitle({ title: 'Tabfire: holding fire' });
     return;
   }
-  chrome.action.setBadgeBackgroundColor({ color: '#e8481c' });
+  chrome.action.setBadgeBackgroundColor({ color: '#c63a12' });
   chrome.action.setBadgeTextColor?.({ color: '#ffffff' });
   chrome.action.setBadgeText({ text: warm ? String(warm) : '' });
   chrome.action.setTitle({ title: warm ? `Tabfire: ${warm} tab${warm === 1 ? '' : 's'} about to burn` : 'Tabfire' });

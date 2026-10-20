@@ -153,7 +153,7 @@ main { max-height: 430px; overflow-y: auto; scrollbar-width: thin; scrollbar-col
   display: inline-flex; align-items: center; gap: 7px;
   padding: 9px 16px 9px 13px; border-radius: 11px;
   color: #eaf6ff; font-weight: 600;
-  background: linear-gradient(180deg, #4a9be0, #2c6fb5);
+  background: linear-gradient(180deg, #2f74ba, #245d9a);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 18px -6px rgba(60, 150, 240, 0.7);
   transition: filter 150ms ease, transform 160ms ease-out;
 }
