@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1a13"/><stop offset="1" stop-color="#140d0a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.95" r="0.7">
+      <stop offset="0" stop-color="#ff5a1a" stop-opacity="0.55"/><stop offset="1" stop-color="#ff5a1a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="outer" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#e8401a"/><stop offset="0.55" stop-color="#ff7a2a"/><stop offset="1" stop-color="#ffb04a"/>
+    </linearGradient>
+    <linearGradient id="inner" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#ffe9a8"/><stop offset="1" stop-color="#ffc25a"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#bg)"/>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#glow)"/>
+  <path fill="url(#outer)" d="M64 108c-20 0-34-13-34-32 0-14 8-24 15-32 2 8 6 13 12 15-2-17 6-32 20-41-1 15 7 25 15 35 6 8 10 15 10 24 0 18-15 31-38 31Z"/>
+  <path fill="url(#inner)" d="M64 108c-10 0-17-7-17-17 0-8 5-14 10-19 1 5 4 8 8 9-1-9 3-17 10-22 0 8 4 13 8 18 3 4 5 8 5 13 0 11-10 18-24 18Z"/>
+</svg>

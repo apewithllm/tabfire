@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tabfire</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="hero">
+    <canvas id="hero-fire" width="90" height="34" aria-hidden="true"></canvas>
+    <div class="hero-row">
+      <div>
+        <h1>Tabfire</h1>
+        <p id="summary" class="summary">&nbsp;</p>
+      </div>
+      <div class="hero-actions">
+        <button id="pause" class="chip" type="button" aria-pressed="false" title="Freeze every fuse">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4.9 6l14.2 12M19.1 6 4.9 18M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5"/></svg>
+          <span>Hold fire</span>
+        </button>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" id="t-burning" aria-selected="true" aria-controls="p-burning">Burning</button>
+      <button role="tab" id="t-ashes" aria-selected="false" aria-controls="p-ashes">Ashes <span id="ash-count" class="count"></span></button>
+      <button role="tab" id="t-settings" aria-selected="false" aria-controls="p-settings">Settings</button>
+      <span class="tab-ind" aria-hidden="true"></span>
+    </nav>
+  </header>
+
+  <main>
+    <section id="p-burning" role="tabpanel" aria-labelledby="t-burning">
+      <ul id="tab-list" class="list"></ul>
+      <div class="foot">
+        <button id="douse-all" class="water" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.7c-3.3 4.1-6 7.6-6 11.1A6 6 0 0 0 18 13.8c0-3.5-2.7-7-6-11.1Z"/></svg>
+          Douse every tab
+        </button>
+      </div>
+    </section>
+
+    <section id="p-ashes" role="tabpanel" aria-labelledby="t-ashes" hidden>
+      <ul id="ash-list" class="list"></ul>
+      <div class="foot">
+        <button id="clear-ashes" class="ghost" type="button">Sweep the ashes</button>
+      </div>
+    </section>
+
+    <section id="p-settings" role="tabpanel" aria-labelledby="t-settings" hidden>
+      <div class="group">
+        <label class="field-label" for="lifetime">Tabs burn away after</label>
+        <div class="fuse">
+          <input id="lifetime" type="range" min="0" max="12" step="1">
+          <output id="lifetime-out" for="lifetime"></output>
+        </div>
+        <p class="hint">Shortening the fuse keeps each tab's progress, so nothing burns all at once.</p>
+      </div>
+
+      <div class="group">
+        <span class="field-label">How hot it gets near the end</span>
+        <div class="seg" role="radiogroup" aria-label="Effects">
+          <label><input type="radio" name="effects" value="off"><span>Icon only</span></label>
+          <label><input type="radio" name="effects" value="subtle"><span>Embers</span></label>
+          <label><input type="radio" name="effects" value="dramatic"><span>Inferno</span></label>
+        </div>
+        <label class="row">
+          <span>Warn me</span>
+          <select id="warn">
+            <option value="5">5 minutes before</option>
+            <option value="15">15 minutes before</option>
+            <option value="30">30 minutes before</option>
+            <option value="60">1 hour before</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="group toggles">
+        <label class="row"><span>Visiting a tab resets its fuse</span><input type="checkbox" class="switch" data-key="resetOnVisit"></label>
+        <label class="row"><span>Pinned tabs are fireproof</span><input type="checkbox" class="switch" data-key="pinnedFireproof"></label>
+        <label class="row"><span>Spare tabs playing audio</span><input type="checkbox" class="switch" data-key="spareAudible"></label>
+        <label class="row"><span>Never burn the tab I'm looking at</span><input type="checkbox" class="switch" data-key="spareActive"></label>
+        <label class="row"><span>Show 🔥 in tab titles</span><input type="checkbox" class="switch" data-key="flameTitles"></label>
+        <label class="row"><span>Fuse keeps burning while Chrome is closed</span><input type="checkbox" class="switch" data-key="clockRunsWhileClosed"></label>
+      </div>
+
+      <div class="group">
+        <span class="field-label">Fireproof sites</span>
+        <form id="fp-form" class="fp-form">
+          <input id="fp-input" type="text" placeholder="mail.google.com" autocomplete="off" spellcheck="false" aria-label="Site to fireproof">
+          <button class="ghost" type="submit">Add</button>
+        </form>
+        <ul id="fp-list" class="pills"></ul>
+      </div>
+    </section>
+  </main>
+
+  <template id="tab-row">
+    <li class="item">
+      <canvas class="ficon" width="32" height="32" aria-hidden="true"></canvas>
+      <button class="title" type="button"></button>
+      <span class="left"></span>
+      <div class="acts">
+        <button class="icon-btn douse" type="button" aria-label="Douse" title="Douse">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.7c-3.3 4.1-6 7.6-6 11.1A6 6 0 0 0 18 13.8c0-3.5-2.7-7-6-11.1Z"/></svg>
+        </button>
+        <button class="icon-btn burn" type="button" aria-label="Burn now" title="Burn now">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4 0 7-2.8 7-7 0-3.2-2-5.6-3.6-7.4-.4 1.7-1.3 3-2.6 3.6.3-3.3-1-6.4-3.6-8.2.1 3-1.7 5.2-3.3 7C4.6 11.5 5 13.4 5 15c0 4.2 3 7 7 7Z"/></svg>
+        </button>
+      </div>
+      <div class="bar"><i></i></div>
+    </li>
+  </template>
+
+  <script src="fire.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
